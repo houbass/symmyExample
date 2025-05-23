@@ -1,5 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router";
+import { Col, Row, Button } from "antd";
+import { CaretLeftOutlined } from "@ant-design/icons";
 
 // Types
 import type { DataItem } from "../../global/types";
@@ -37,11 +39,19 @@ function ProductDetailPage({ data, isError }: Props) {
 
   return (
     <PageLayout>
-      <Progress
-        children={<DetailCard data={thisData} />}
-        isError={isError}
-        data={data}
-      />
+      <Col style={{ height: "100%" }}>
+        <Row style={{ paddingTop: "16px", paddingLeft: "50px" }}>
+          <Button
+            type="default"
+            icon={<CaretLeftOutlined />}
+            onClick={() => navigate("/")}
+          >
+            Back to catalog
+          </Button>
+        </Row>
+
+        <Progress children={<DetailCard data={thisData} />} isError={isError} />
+      </Col>
     </PageLayout>
   );
 }

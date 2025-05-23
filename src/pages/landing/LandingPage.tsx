@@ -73,11 +73,7 @@ function LandingPage({ data, isError }: Props) {
         </Col>
       </Row>
 
-      <Progress
-        children={<Catalog data={filteredData} />}
-        isError={isError}
-        data={filteredData}
-      />
+      <Progress children={<Catalog data={filteredData} />} isError={isError} />
     </PageLayout>
   );
 }

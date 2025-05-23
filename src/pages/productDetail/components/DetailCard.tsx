@@ -1,7 +1,5 @@
-import { useNavigate } from "react-router";
-import { Col, Row, Card, Typography, Button } from "antd";
+import { Row, Card, Typography, Skeleton } from "antd";
 const { Meta } = Card;
-import { CaretLeftOutlined } from "@ant-design/icons";
 
 // Types
 import type { DataItem } from "../../../global/types";
@@ -14,22 +12,13 @@ interface Props {
 }
 
 function DetailCard({ data }: Props) {
-  const navigate = useNavigate();
-
-  if (!data) return;
-
   return (
-    <Col>
-      <Row style={{ paddingTop: "16px", paddingLeft: "50px" }}>
-        <Button
-          type="default"
-          icon={<CaretLeftOutlined />}
-          onClick={() => navigate("/")}
-        >
-          Back to catalog
-        </Button>
-      </Row>
-      <Row style={{ padding: "16px", justifyContent: "center" }}>
+    <Row style={{ padding: "16px", justifyContent: "center" }}>
+      {!data ? (
+        <Card style={{ width: "100%", maxWidth: "700px" }}>
+          <Skeleton active style={{ height: "340px" }} />
+        </Card>
+      ) : (
         <Card
           style={{ width: "100%", maxWidth: "700px" }}
           cover={
@@ -57,8 +46,8 @@ function DetailCard({ data }: Props) {
             description={data.description}
           />
         </Card>
-      </Row>
-    </Col>
+      )}
+    </Row>
   );
 }
 

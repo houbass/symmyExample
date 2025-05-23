@@ -1,4 +1,4 @@
-import { Row, Col } from "antd";
+import { Row, Col, Skeleton, Card } from "antd";
 
 // Types
 import type { DataItem } from "../../../global/types";
@@ -24,11 +24,19 @@ function Catalog({ data }: Props) {
         }}
         gutter={[16, 16]}
       >
-        {data?.map((item, index) => (
-          <Col key={index} xs={24} lg={8} xl={6}>
-            <ProductCard index={index} item={item} />
-          </Col>
-        ))}
+        {!data
+          ? Array.from({ length: 8 }).map((_, index) => (
+              <Col key={index} xs={24} lg={8} xl={6}>
+                <Card>
+                  <Skeleton active style={{ height: "260px" }} />
+                </Card>
+              </Col>
+            ))
+          : data.map((item, index) => (
+              <Col key={index} xs={24} lg={8} xl={6}>
+                <ProductCard index={index} item={item} />
+              </Col>
+            ))}
       </Row>
     </Row>
   );

@@ -1,13 +1,9 @@
 import React from "react";
-import { Row, Typography, Spin } from "antd";
-
-// Types
-import type { DataItem } from "../global/types";
+import { Row, Typography } from "antd";
 
 interface Props {
   children: React.ReactNode;
   isError: any;
-  data: undefined | DataItem[];
 }
 
 const progressContainer = {
@@ -17,24 +13,16 @@ const progressContainer = {
   minHeight: "calc(100% - 228px)",
 };
 
-function Progress({ children, isError, data }: Props) {
+function Progress({ children, isError }: Props) {
   return (
     <>
-      {/* Handling loading and errors while fetching */}
+      {/* Handling errors while fetching */}
       {isError ? (
         <Row style={progressContainer}>
           <Typography>There was an error while loading.</Typography>
         </Row>
       ) : (
-        <>
-          {data ? (
-            children
-          ) : (
-            <Row style={progressContainer}>
-              <Spin size="large"></Spin>
-            </Row>
-          )}
-        </>
+        children
       )}
     </>
   );
