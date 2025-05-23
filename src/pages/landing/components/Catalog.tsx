@@ -10,6 +10,10 @@ interface Props {
   data: undefined | DataItem[];
 }
 
+const XS = 24;
+const LG = 8;
+const XL = 6;
+
 function Catalog({ data }: Props) {
   return (
     <Row
@@ -26,14 +30,14 @@ function Catalog({ data }: Props) {
       >
         {!data
           ? Array.from({ length: 8 }).map((_, index) => (
-              <Col key={index} xs={24} lg={8} xl={6}>
+              <Col key={index} xs={XS} lg={LG} xl={XL}>
                 <Card>
                   <Skeleton active style={{ height: "260px" }} />
                 </Card>
               </Col>
             ))
           : data.map((item, index) => (
-              <Col key={index} xs={24} lg={8} xl={6}>
+              <Col key={index} xs={XS} lg={LG} xl={XL}>
                 <ProductCard index={index} item={item} />
               </Col>
             ))}
