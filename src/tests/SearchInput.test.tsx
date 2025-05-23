@@ -1,9 +1,7 @@
 import { render } from "@testing-library/react";
-import SearchInput from "./components/SearchInput";
+import SearchInput from "../components/SearchInput";
 
-function madafakr() {
-  console.log("yo");
-}
+function deleteSearch() {}
 
 function searching(value: string) {
   console.log(value);
@@ -14,7 +12,7 @@ describe("SearchInput", () => {
     const { getByTestId } = render(
       <SearchInput
         searchValues="jacket"
-        deleteSearch={madafakr}
+        deleteSearch={deleteSearch}
         searching={searching}
       />
     );
