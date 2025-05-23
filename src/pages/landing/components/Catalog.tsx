@@ -1,4 +1,6 @@
 import { Row, Col, Skeleton, Card } from "antd";
+import { screenSize } from "../../../global/constants";
+const { xs, lg, xl } = screenSize;
 
 // Types
 import type { DataItem } from "../../../global/types";
@@ -9,10 +11,6 @@ import ProductCard from "./ProductCard";
 interface Props {
   data: undefined | DataItem[];
 }
-
-const XS = 24;
-const LG = 8;
-const XL = 6;
 
 function Catalog({ data }: Props) {
   return (
@@ -30,14 +28,14 @@ function Catalog({ data }: Props) {
       >
         {!data
           ? Array.from({ length: 8 }).map((_, index) => (
-              <Col key={index} xs={XS} lg={LG} xl={XL}>
+              <Col key={index} xs={xs} lg={lg} xl={xl}>
                 <Card>
                   <Skeleton active style={{ height: "260px" }} />
                 </Card>
               </Col>
             ))
           : data.map((item, index) => (
-              <Col key={index} xs={XS} lg={LG} xl={XL}>
+              <Col key={index} xs={xs} lg={lg} xl={xl}>
                 <ProductCard index={index} item={item} />
               </Col>
             ))}

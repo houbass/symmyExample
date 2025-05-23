@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router";
 import { Card, Col, Row, Typography } from "antd";
+import { cleanString } from "../../../global/utils";
 
 // Types
 import type { DataItem } from "../../../global/types";
@@ -20,7 +21,7 @@ function ProductCard({ index, item }: Props) {
       hoverable
       key={index + item.title}
       title={<EllipsesText text={item.title} />}
-      onClick={() => navigate("/product-detail/" + item.title)}
+      onClick={() => navigate("/product-detail/" + cleanString(item.title))}
       cover={
         <Col
           style={{
@@ -30,7 +31,6 @@ function ProductCard({ index, item }: Props) {
           }}
         >
           <img
-            loading="lazy"
             alt={item.title}
             src={item.image}
             style={{ height: "150px", width: "auto" }}

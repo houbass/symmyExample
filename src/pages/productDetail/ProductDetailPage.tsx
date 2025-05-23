@@ -2,6 +2,7 @@ import { useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router";
 import { Col, Row, Button } from "antd";
 import { CaretLeftOutlined } from "@ant-design/icons";
+import { cleanString } from "../../global/utils";
 
 // Types
 import type { DataItem } from "../../global/types";
@@ -26,7 +27,9 @@ function ProductDetailPage({ data, isError }: Props) {
   // Find product name
   const thisData = useMemo(() => {
     if (data && thisProductName) {
-      return data.find((item) => item.title.includes(thisProductName));
+      return data.find((item) =>
+        cleanString(item.title).includes(cleanString(thisProductName))
+      );
     }
   }, [data, thisProductName]);
 
