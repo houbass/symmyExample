@@ -4,6 +4,7 @@ URL params, so it can be easily sharade. There is also dinamic router for produc
 page + automatic redirecting if the page does not exist. I also demonstrate a quick input test.
 As a next steps of developing I would focus to the following:
 
+- pictures optimalization (adding skeletons)
 - SEO
 - PWA
 - meta data (for social preview)
