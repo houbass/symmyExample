@@ -1,8 +1,11 @@
 import { Link, useNavigate } from "react-router";
-import { Card, Row, Typography } from "antd";
+import { Card, Col, Row, Typography } from "antd";
 
 // Types
 import type { DataItem } from "../../../global/types";
+
+// Components
+import EllipsesText from "../../../components/EllipsesText";
 
 interface Props {
   index: number;
@@ -16,21 +19,10 @@ function ProductCard({ index, item }: Props) {
     <Card
       hoverable
       key={index + item.title}
-      title={
-        <p
-          title={item.title}
-          style={{
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-          }}
-        >
-          {item.title}
-        </p>
-      }
+      title={<EllipsesText text={item.title} />}
       onClick={() => navigate("/product-detail/" + item.title)}
       cover={
-        <Row
+        <Col
           style={{
             display: "flex",
             justifyContent: "center",
@@ -43,7 +35,7 @@ function ProductCard({ index, item }: Props) {
             src={item.image}
             style={{ height: "150px", width: "auto" }}
           />
-        </Row>
+        </Col>
       }
     >
       <Row

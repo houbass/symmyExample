@@ -16,7 +16,11 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "strict": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "noEmit": true,
+    "declaration": false
   },
   "include": ["src"]
 }

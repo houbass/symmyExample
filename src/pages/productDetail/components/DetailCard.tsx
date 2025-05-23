@@ -6,6 +6,9 @@ import { CaretLeftOutlined } from "@ant-design/icons";
 // Types
 import type { DataItem } from "../../../global/types";
 
+// Components
+import EllipsesText from "../../../components/EllipsesText";
+
 interface Props {
   data: undefined | DataItem;
 }
@@ -49,7 +52,10 @@ function DetailCard({ data }: Props) {
             <Typography>{data.category}</Typography>,
           ]}
         >
-          <Meta title={data.title} description={data.description} />
+          <Meta
+            title={<EllipsesText text={data.title} />}
+            description={data.description}
+          />
         </Card>
       </Row>
     </Col>
