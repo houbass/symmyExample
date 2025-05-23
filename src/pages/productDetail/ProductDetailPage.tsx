@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useParams, useNavigate } from "react-router";
 import { Col, Row, Button } from "antd";
 import { CaretLeftOutlined } from "@ant-design/icons";
@@ -19,6 +19,7 @@ interface Props {
 
 function ProductDetailPage({ data, isError }: Props) {
   const navigate = useNavigate();
+  const ref = useRef<HTMLInputElement>(null);
 
   // Get product name from URL
   const params = useParams();
@@ -40,22 +41,32 @@ function ProductDetailPage({ data, isError }: Props) {
     }
   }, [data, thisData]);
 
-  return (
-    <PageLayout>
-      <Col style={{ height: "100%" }}>
-        <Row style={{ paddingTop: "16px", paddingLeft: "50px" }}>
-          <Button
-            type="default"
-            icon={<CaretLeftOutlined />}
-            onClick={() => navigate("/")}
-          >
-            Back to catalog
-          </Button>
-        </Row>
+  // Scroll on top on init
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
 
-        <Progress children={<DetailCard data={thisData} />} isError={isError} />
-      </Col>
-    </PageLayout>
+  return (
+    <div ref={ref}>
+      <PageLayout>
+        <Col style={{ height: "100%" }}>
+          <Row style={{ paddingTop: "16px", paddingLeft: "50px" }}>
+            <Button
+              type="default"
+              icon={<CaretLeftOutlined />}
+              onClick={() => navigate("/")}
+            >
+              Back to catalog
+            </Button>
+          </Row>
+
+          <Progress
+            children={<DetailCard data={thisData} />}
+            isError={isError}
+          />
+        </Col>
+      </PageLayout>
+    </div>
   );
 }
 
